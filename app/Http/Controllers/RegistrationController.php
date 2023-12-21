@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\JobUser;
 
 class RegistrationController extends Controller
 {
@@ -19,9 +20,11 @@ class RegistrationController extends Controller
             'password' => 'required',
         ]);
 
-        // Save the user details to the database (you'll need to define your User model)
-        // Example assuming you have a User model:
-        // User::create($request->only(['username', 'password']));
+        // Save the user details to the database using the JobUser model
+        JobUser::create([
+            'username' => $request->input('username'),
+            'password' => $request->input('password'),
+        ]);
 
         // Redirect or perform any other actions as needed
         return redirect()->route('success');

@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobUser extends Model
 {
-    protected $fillable = ['username', 'password']; // Adjust as needed
+    use HasFactory;
+
+    protected $table = 'jobuser';
+    public $timestamps = false; // Disable timestamp columns
+    protected $fillable = ['username', 'password'];
 }

@@ -50,26 +50,27 @@
     </ul>
 </div>
         
-                        <div class="">
-                            <h4 class="mb-4">Apply For The Job</h4>
-                            <form action="confidential.php" method="post">
-                                <div class="row g-3">
-                                    <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Your Name" required>
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control" placeholder="Your Email" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea class="form-control" rows="5" placeholder="Coverletter" required></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit" id="apply-button">Apply Now</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+<div class="">
+    <h4 class="mb-4">Apply For The Job</h4>
+    <form action="{{url('confidential')}}" method="post">
+        @csrf
+        <div class="row g-3">
+            <div class="col-12 col-sm-6">
+                <input type="text" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="col-12 col-sm-6">
+                <input type="email" class="form-control" placeholder="Your Email" required>
+            </div>
+            <div class="col-12">
+                <textarea class="form-control" rows="5" placeholder="Coverletter" required></textarea>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary w-100" type="submit" id="apply-button">Apply Now</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
         
                     <div class="col-lg-4">
     <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
