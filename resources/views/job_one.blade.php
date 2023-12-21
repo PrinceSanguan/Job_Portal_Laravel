@@ -51,7 +51,8 @@
         
                         <div class="">
                             <h4 class="mb-4">Apply For The Job</h4>
-                            <form action="confidential.php" method="post">
+                            <form action="{{url('confidential')}}" method="post">
+                                @csrf
                                 <div class="row g-3">
                                     <div class="col-12 col-sm-6">
                                         <input type="text" class="form-control" placeholder="Your Name" required>
