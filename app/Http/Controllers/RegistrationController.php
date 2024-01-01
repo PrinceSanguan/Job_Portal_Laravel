@@ -16,14 +16,16 @@ class RegistrationController extends Controller
     {
         // Validate the form data (add more validation rules as needed)
         $request->validate([
-            'username' => 'required',
-            'password' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'coverletter' => 'required'
         ]);
 
         // Save the user details to the database using the JobUser model
         JobUser::create([
-            'username' => $request->input('username'),
-            'password' => $request->input('password'),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'coverletter' => $request->input('coverletter')
         ]);
 
         // Redirect or perform any other actions as needed

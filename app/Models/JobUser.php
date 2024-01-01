@@ -11,5 +11,5 @@ class JobUser extends Model
 
     protected $table = 'jobuser';
     public $timestamps = false; // Disable timestamp columns
-    protected $fillable = ['username', 'password'];
+    protected $fillable = ['name', 'email', 'coverletter'];
 }

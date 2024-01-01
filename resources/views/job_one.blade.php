@@ -51,17 +51,17 @@
         
                         <div class="">
                             <h4 class="mb-4">Apply For The Job</h4>
-                            <form action="{{url('confidential')}}" method="post">
+                            <form action="{{ route('register') }}" method="post">
                                 @csrf
                                 <div class="row g-3">
                                     <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Your Name" required>
+                                        <input type="text" class="form-control" placeholder="Your Name" name="name" required>
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control" placeholder="Your Email" required>
+                                        <input type="email" class="form-control" placeholder="Your Email" name="email" required>
                                     </div>
                                     <div class="col-12">
-                                        <textarea class="form-control" rows="5" placeholder="Coverletter" required></textarea>
+                                        <textarea class="form-control" rows="5" placeholder="Coverletter" name="coverletter" required></textarea>
                                     </div>
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100" type="submit" id="apply-button">Apply Now</button>

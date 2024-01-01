@@ -38,15 +38,6 @@ Route::get('/job_three', function () {
     return view('job_three');
 });
 
-Route::post('/confidential', function () {
-    return view('confidential');
-});
-
-Route::get('/link', function () {
-    return view('link');
-});
-
-
 Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegistrationController::class, 'processRegistration']);
 Route::get('/success', [RegistrationController::class, 'success'])->name('success');
