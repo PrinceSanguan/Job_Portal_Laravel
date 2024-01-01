@@ -14,6 +14,7 @@ use App\Http\Controllers\RegistrationController;
 |
 */
 
+// Default routes
 Route::get('/', function () {
     return view('welcome');
 });
@@ -38,6 +39,10 @@ Route::get('/job_three', function () {
     return view('job_three');
 });
 
+// Registration routes
 Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegistrationController::class, 'processRegistration']);
 Route::get('/success', [RegistrationController::class, 'success'])->name('success');
+
+// Admin route for displaying user details
+Route::get('/admin', [RegistrationController::class, 'showUserDetails'])->name('admin');

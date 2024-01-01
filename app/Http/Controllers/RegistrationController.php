@@ -7,11 +7,6 @@ use App\Models\JobUser;
 
 class RegistrationController extends Controller
 {
-    public function showRegistrationForm()
-    {
-        return view('link');
-    }
-
     public function processRegistration(Request $request)
     {
         // Validate the form data (add more validation rules as needed)
@@ -36,4 +31,14 @@ class RegistrationController extends Controller
     {
         return view('success');
     }
+
+    public function showUserDetails()
+{
+    // Retrieve information from the database (assuming you have a 'users' table)
+    $users = JobUser::all();
+
+    // Pass the retrieved information to the 'admin' view
+    return view('admin', ['users' => $users]);
+}
+
 }
