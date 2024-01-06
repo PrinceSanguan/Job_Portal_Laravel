@@ -51,7 +51,7 @@
         
                         <div class="">
                             <h4 class="mb-4">Apply For The Job</h4>
-                            <form action="{{ route('register') }}" method="post">
+                            <form action="{{ route('apply.job') }}" method="post">
                                 @csrf
                                 <div class="row g-3">
                                     <div class="col-12 col-sm-6">
@@ -64,7 +64,7 @@
                                         <textarea class="form-control" rows="5" placeholder="Coverletter" name="coverletter" required></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit" id="apply-button">Apply Now</button>
+                                        <button class="btn btn-primary w-100" onclick="showRegistrationAlert()" type="submit" id="apply-button">Apply Now</button>
                                     </div>
                                 </div>
                             </form>
@@ -89,6 +89,12 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function showRegistrationAlert() {
+                alert("You need to register first to submit your application.");
+            }
+        </script>
         <!-- Job Detail End -->
 
         {{-------Footer------------}}

@@ -26,7 +26,7 @@
             </div>
             <div id="last-access" style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
                 Current Time: <span id="last-access-time">Loading...</span>&nbsp;
-                {{-- <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> --}}
+                <a href="{{ url('/') }}" class="btn btn-danger square-btn-adjust">Logout</a>
             </div>
         </nav>
         <!-- /. NAV TOP  -->

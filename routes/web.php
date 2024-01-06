@@ -39,10 +39,22 @@ Route::get('/job_three', function () {
     return view('job_three');
 });
 
-// Registration routes
-Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegistrationController::class, 'processRegistration']);
-Route::get('/success', [RegistrationController::class, 'success'])->name('success');
+// Define a route for the login page
+Route::get('/login', [RegistrationController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [RegistrationController::class, 'login']);
 
-// Admin route for displaying user details
+// Registration routes
+
+// web.php
+Route::post('/apply-job', [RegistrationController::class, 'applyJob'])->name('apply.job');
+Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])->name('register.form');
+Route::post('/register', [RegistrationController::class, 'processRegistration'])->name('register.submit');
+Route::get('/success', [RegistrationController::class, 'showSuccess'])->name('success');
+
+// Add a new route for deleting applicants
+Route::delete('/admin/delete/{id}', [RegistrationController::class, 'deleteApplicant'])->name('admin.delete');
+
+// web.php
+Route::get('/admin', [RegistrationController::class, 'adminPage'])->name('admin.page');
 Route::get('/admin', [RegistrationController::class, 'showUserDetails'])->name('admin');
+
