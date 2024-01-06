@@ -58,3 +58,6 @@ Route::delete('/admin/delete/{id}', [RegistrationController::class, 'deleteAppli
 Route::get('/admin', [RegistrationController::class, 'adminPage'])->name('admin.page');
 Route::get('/admin', [RegistrationController::class, 'showUserDetails'])->name('admin');
 
+// Show pdf 
+Route::get('/show-pdf/{filename}', [RegistrationController::class, 'showPdf'])->name('show-pdf');
+

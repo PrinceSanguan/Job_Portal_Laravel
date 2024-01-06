@@ -56,8 +56,8 @@
                                         <textarea class="form-control" rows="5" placeholder="Coverletter" name="coverletter" required></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <label for="file" class="form-label">Upload Resume</label>
-                                        <input type="file" class="form-control" name="resume">
+                                        <label for="file" class="form-label">Upload Resume (PDF only)</label>
+                                        <input type="file" class="form-control" name="file" accept=".pdf">
                                     </div>
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100" onclick="showRegistrationAlert()" type="submit" id="apply-button">Apply Now</button>

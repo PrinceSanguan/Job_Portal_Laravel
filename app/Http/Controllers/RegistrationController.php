@@ -15,21 +15,25 @@ class RegistrationController extends Controller
         'name' => 'required',
         'email' => 'required|email',
         'coverletter' => 'required',
-        'resume' => 'required|mimes:jpeg,png,jpg,pdf', // Validate resume file (image or PDF)
+        'file' => 'required|mimes:pdf', // Validate resume file (PDF only)
     ]);
 
     // Handle file upload
-    if ($request->hasFile('resume') && $request->file('resume')->isValid()) {
-        $path = $request->file('resume')->store('/', ['disk' => 'my_disk']); // Store in the 'public' disk under 'resumes'
+    if ($request->hasFile('file') && $request->file('file')->isValid()) {
+
+        $post = new JobUser();
+        $path = $request->file('file')->store('/', ['disk' => 'my_disk']); // Store in the 'public' disk under 'resumes'
 
         // Save the user details to the database using the JobUser model
-        JobUser::create([
+        $data = ([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'coverletter' => $request->input('coverletter'),
             'resume' => $path, // Save file path in the database
             'created_at' => now(),
         ]);
+
+        $post->insert($data);
 
         // Redirect to the registration form
         return redirect()->route('register.form');
@@ -104,6 +108,14 @@ class RegistrationController extends Controller
      {
          return view('admin');
      }
+     
+     // Show the PDF
+     public function showPdf($filename)
+    {
+        $pdfPath = public_path('uploads/' . $filename);
+
+        return response()->file($pdfPath);
+    }
 }
 
 

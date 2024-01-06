@@ -19,13 +19,12 @@
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
-                            <tr>
-                                <th>#</th>
+                            <tr class="text-center">
                                 <th>Name of The Applicant</th>
                                 <th>Email of Applicant</th>
                                 <th>Cover Letter of Applicant</th>
-                                <th>Date of Submission</th>
                                 <th>Resume</th>
+                                <th>Date of Submission</th>
                                 <th>Action</th> <!-- New column for the delete button -->
                             </tr>
                         </thead>
@@ -33,13 +32,18 @@
                             @if ($users)
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->coverletter }}</td>
+                                            <td class="text-center">
+                                                <img src="{{ asset('img/pdf.png') }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;">
+                                                <br>
+                                                <a href="{{ route('show-pdf', ['filename' => $user->resume]) }}" target="_blank">
+                                                    <button type="button" class="btn btn-primary">View PDF</button>
+                                                </a>
+                                            </td>
                                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('F j, Y - g:ia') }}</td>
-                                        <td><img src="{{ asset('uploads/' . $user->resume) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
-                                        <td>
+                                        <td class="text-center">
                                             <form action="{{ route('admin.delete', $user->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
