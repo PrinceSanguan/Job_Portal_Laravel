@@ -9,25 +9,36 @@ use Illuminate\Support\Facades\Session;
 class RegistrationController extends Controller
 {
     public function applyJob(Request $request)
-    {
-        // Validate the form data
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'coverletter' => 'required',
-        ]);
+{
+    // Validate the form data
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'coverletter' => 'required',
+        'resume' => 'required|mimes:jpeg,png,jpg,pdf', // Validate resume file (image or PDF)
+    ]);
+
+    // Handle file upload
+    if ($request->hasFile('resume') && $request->file('resume')->isValid()) {
+        $path = $request->file('resume')->store('/', ['disk' => 'my_disk']); // Store in the 'public' disk under 'resumes'
 
         // Save the user details to the database using the JobUser model
         JobUser::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'coverletter' => $request->input('coverletter'),
+            'resume' => $path, // Save file path in the database
             'created_at' => now(),
         ]);
 
         // Redirect to the registration form
         return redirect()->route('register.form');
     }
+
+    // If file upload fails, redirect back with an error message
+    return redirect()->back()->with('error', 'Invalid or missing resume file.');
+}
+
 
     public function processRegistration(Request $request)
     {

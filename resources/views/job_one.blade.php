@@ -33,25 +33,17 @@
                         <h4 class="mb-3">Responsibilities</h4>
                          <ul class="list-unstyled">
                               <li><i class="fa fa-angle-right text-primary me-2"></i>Answer inbound calls professionally and provide information to customers.</li>
-                              <li><i class="fa fa-angle-right text-primary me-2"></i>Make outbound calls to follow up on customer inquiries and resolve issues.</li>
-                              <li><i class="fa fa-angle-right text-primary me-2"></i>Maintain accurate records of all customer interactions.</li>
-                              <li><i class="fa fa-angle-right text-primary me-2"></i>Ensure customer satisfaction by addressing their needs and concerns.</li>
-                              <li><i class="fa fa-angle-right text-primary me-2"></i>Adhere to call center scripts and guidelines for consistent service.</li>
                           </ul>
 
                           <h4 class="mb-3">Qualifications</h4>
                           <ul class="list-unstyled">
                               <li><i class="fa fa-angle-right text-primary me-2"></i>Strong communication skills, both verbal and written.</li>
-                              <li><i class="fa fa-angle-right text-primary me-2"></i>Excellent problem-solving and multitasking abilities.</li>
-                              <li><i class="fa fa-angle-right text-primary me-2"></i>Customer-focused with a polite and professional demeanor.</li>
-                              <li><i class="fa fa-angle-right text-primary me-2"></i>Ability to work in a fast-paced environment and handle high call volumes.</li>
-                              <li><i class="fa fa-angle-right text-primary me-2"></i>Previous call center or customer service experience is a plus.</li>
                           </ul>
                         </div>
         
                         <div class="">
                             <h4 class="mb-4">Apply For The Job</h4>
-                            <form action="{{ route('apply.job') }}" method="post">
+                            <form action="{{ route('apply.job') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row g-3">
                                     <div class="col-12 col-sm-6">
@@ -62,6 +54,10 @@
                                     </div>
                                     <div class="col-12">
                                         <textarea class="form-control" rows="5" placeholder="Coverletter" name="coverletter" required></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="file" class="form-label">Upload Resume</label>
+                                        <input type="file" class="form-control" name="resume">
                                     </div>
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100" onclick="showRegistrationAlert()" type="submit" id="apply-button">Apply Now</button>

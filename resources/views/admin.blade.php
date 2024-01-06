@@ -25,6 +25,7 @@
                                 <th>Email of Applicant</th>
                                 <th>Cover Letter of Applicant</th>
                                 <th>Date of Submission</th>
+                                <th>Resume</th>
                                 <th>Action</th> <!-- New column for the delete button -->
                             </tr>
                         </thead>
@@ -37,6 +38,7 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->coverletter }}</td>
                                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('F j, Y - g:ia') }}</td>
+                                        <td><img src="{{ asset('uploads/' . $user->resume) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
                                         <td>
                                             <form action="{{ route('admin.delete', $user->id) }}" method="post">
                                                 @csrf
