@@ -22,6 +22,7 @@ class RegistrationController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'coverletter' => $request->input('coverletter'),
+            'created_at' => now(),
         ]);
 
         // Redirect to the registration form

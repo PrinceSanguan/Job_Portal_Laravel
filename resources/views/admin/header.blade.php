@@ -14,15 +14,15 @@
 </head>
 <body>
     <div id="wrapper">
-        <nav class="navbar navbar-default navbar-cls-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
+        <nav class="navbar navbar-default navbar-cls-top" role="navigation" style="margin-bottom: 0; background-color: #00b074">
+            <div class="navbar-header" style="background-color: #00b074">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{url('/')}}">FRONTEND</a>
+                <a class="navbar-brand" href="{{url('/')}}" style="background-color: #00b074">FRONTEND</a>
             </div>
             <div id="last-access" style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
                 Current Time: <span id="last-access-time">Loading...</span>&nbsp;
@@ -42,6 +42,10 @@
                     <li>
                       <a  href="{{ url('/') }}"><i class="fa fa-desktop fa-3x"></i>Frontend</a>
                   </li>
+
+                  <li>
+                    <a  href="{{ url('/') }}"><i class="fa fa-envelope fa-3x"></i>Post a Job</a>
+                </li>
                 </ul>
             </div>
         </nav>
