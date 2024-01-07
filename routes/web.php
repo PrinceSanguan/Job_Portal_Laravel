@@ -64,3 +64,6 @@ Route::get('/show-pdf/{filename}', [RegistrationController::class, 'showPdf'])->
 Route::post('/post_a_job', [RegistrationController::class, 'jobPosting'])->name('post_a_job');
 
 Route::get('/job_details', [RegistrationController::class, 'showDetails'])->name('job_details');
+
+// Add a new route for deleting applicants
+Route::delete('/job_details/delete/{id}', [RegistrationController::class, 'deleteJob'])->name('job.delete');

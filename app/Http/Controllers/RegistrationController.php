@@ -195,6 +195,15 @@ class RegistrationController extends Controller
         return view('job_one', ['users' => $users]);
     }
 
+    public function deleteJob($id)
+    {
+        // Find the user by ID and delete
+        JobDetails::find($id)->delete();
+
+        // Redirect back to the admin page
+        return redirect()->route('job_details')->with('success', 'Applicant deleted successfully!');
+    }
+
 }
 
 

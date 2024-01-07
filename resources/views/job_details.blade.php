@@ -21,6 +21,7 @@
                                 <th>Qualification</th>
                                 <th>Detail</th>
                                 <th>Image</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,13 @@
                                         <td>{{ $user->qualification }}</td>
                                         <td>{{ $user->detail }}</td>
                                         <td><img src="{{ asset('uploads-image/' . $user->image) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
+                                        <td class="text-center">
+                                            <form  action="{{ route('job.delete', $user->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
                                     @endif
