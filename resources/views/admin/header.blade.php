@@ -46,12 +46,12 @@
                         <img src="{{ url('asset/img/find_user.png') }}" class="user-image img-responsive" />
                     </li>
 
-                    <li>
-                      <a  href="{{ url('/') }}"><i class="fa fa-desktop fa-3x"></i>Frontend</a>
-                  </li>
-
                   <li>
-                    <a  href="{{ url('/admin') }}"><i class="fa fa-table fa-3x"></i>Table</a>
+                    <a  href="{{ url('/admin') }}"><i class="fa fa-table fa-3x"></i>Applicant Details</a>
+                </li>
+
+                <li>
+                    <a  href="{{ url('/job_details') }}"><i class="fa fa-table fa-3x"></i>Job Details</a>
                 </li>
 
                   <li>

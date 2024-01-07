@@ -46,7 +46,14 @@ return [
 
         'my_disk' => [
             'driver' => 'local',
-            'root' => public_path('uploads'),
+            'root' => public_path('uploads-pdf'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'my_diskone' => [
+            'driver' => 'local',
+            'root' => public_path('uploads-image'),
             'visibility' => 'public',
             'throw' => false,
         ],

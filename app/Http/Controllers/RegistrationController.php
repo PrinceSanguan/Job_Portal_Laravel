@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JobUser;
+use App\Models\JobDetails;
 use Illuminate\Support\Facades\Session;
 
 class RegistrationController extends Controller
@@ -112,7 +113,7 @@ class RegistrationController extends Controller
      // Show the PDF
      public function showPdf($filename)
     {
-        $pdfPath = public_path('uploads/' . $filename);
+        $pdfPath = public_path('uploads-pdf/' . $filename);
 
         return response()->file($pdfPath);
     }
@@ -126,39 +127,75 @@ class RegistrationController extends Controller
         'name' => 'required',
         'address' => 'required',
         'published' => 'required',
+        'salary' => 'required',
         'vacancy' => 'required',
         'status' => 'required',
         'description' => 'required',
         'responsibilities' => 'required',
         'qualification' => 'required',
-        'details' => 'required',
-        'file' => 'required|mimes:pdf', // Validate resume file (PDF only)
+        'detail' => 'required',
+        'file' => 'required|image'
     ]);
 
     // Handle file upload
     if ($request->hasFile('file') && $request->file('file')->isValid()) {
 
-        $post = new JobUser();
-        $path = $request->file('file')->store('/', ['disk' => 'my_disk']); // Store in the 'public' disk under 'resumes'
+    // Create a new instance of the JobDetails model
+    $post = new JobDetails();
+    $path = $request->file('file')->store('/', ['disk' => 'my_diskone']); // Store in the 'public' disk under 'resumes'
 
-        // Save the user details to the database using the JobUser model
-        $data = ([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'coverletter' => $request->input('coverletter'),
-            'resume' => $path, // Save file path in the database
-            'created_at' => now(),
-        ]);
+    // Save the user details to the database using the JobDetails model
+    $data = [
+        'name' => $request->input('name'),
+        'address' => $request->input('address'),
+        'published' => $request->input('published'),
+        'salary' => $request->input('salary'),
+        'vacancy' => $request->input('vacancy'),
+        'status' => $request->input('status'),
+        'description' => $request->input('description'),
+        'responsibilities' => $request->input('responsibilities'),
+        'qualification' => $request->input('qualification'),
+        'detail' => $request->input('detail'),
+        'image' => $path,
+    ];
+    
 
-        $post->insert($data);
+    // Save the model to the database
+    $post->insert($data);
 
-        // Redirect to the registration form
-        return redirect()->route('register.form');
+    // Redirect back to the same page with success message
+    return back()->with('success', 'Job posting successful.'); 
+}
+}
+
+    public function showJobListing()
+    {
+        // Fetch all jobs from the database
+        $users = JobDetails::all();
+
+        // Pass the jobs to the 'job_listing' view
+        return view('joblisting', ['users' => $users]);
     }
 
-    // If file upload fails, redirect back with an error message
-    return redirect()->back()->with('error', 'Invalid or missing resume file.');
+    public function showDetails()
+    {
+        // Fetch all jobs from the database
+        $users = JobDetails::all();
+
+        // Pass the jobs to the 'job_listing' view
+        return view('job_details', ['users' => $users]);
+    }
+
+    public function showJobOne($id)
+    {
+        // Fetch the job details based on the provided ID
+        $users = JobDetails::find($id);
+
+        // Pass the job details to the 'job_one' view
+        return view('job_one', ['users' => $users]);
+    }
+
 }
-}
+
 
 

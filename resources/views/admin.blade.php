@@ -3,7 +3,7 @@
         <!-- Kitchen Sink -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                Applicant Table
+                Applicant Details
             </div>
             <div class="panel-body">
                 <div class="table-responsive">

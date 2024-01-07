@@ -23,13 +23,8 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/joblisting', function () {
-    return view('joblisting');
-});
-
-Route::get('/job_one', function () {
-    return view('job_one');
-});
+Route::get('/joblisting', [RegistrationController::class, 'showJobListing'])->name('joblisting');
+Route::get('/job_one/{id}', [RegistrationController::class, 'showJobOne'])->name('job_one');
 
 Route::get('/job_two', function () {
     return view('job_two');
@@ -65,3 +60,7 @@ Route::get('/admin', [RegistrationController::class, 'showUserDetails'])->name('
 // Show pdf 
 Route::get('/show-pdf/{filename}', [RegistrationController::class, 'showPdf'])->name('show-pdf');
 
+//JobPosting
+Route::post('/post_a_job', [RegistrationController::class, 'jobPosting'])->name('post_a_job');
+
+Route::get('/job_details', [RegistrationController::class, 'showDetails'])->name('job_details');
