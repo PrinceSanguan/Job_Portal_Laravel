@@ -39,6 +39,10 @@ Route::get('/job_three', function () {
     return view('job_three');
 });
 
+Route::get('/post_a_job', function () {
+    return view('post_a_job');
+});
+
 // Define a route for the login page
 Route::get('/login', [RegistrationController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [RegistrationController::class, 'login']);

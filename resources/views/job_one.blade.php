@@ -39,8 +39,8 @@
                           <ul class="list-unstyled">
                               <li><i class="fa fa-angle-right text-primary me-2"></i>Strong communication skills, both verbal and written.</li>
                           </ul>
-                        </div>
-        
+                          
+                    </div>
                         <div class="">
                             <h4 class="mb-4">Apply For The Job</h4>
                             <form action="{{ route('apply.job') }}" method="post" enctype="multipart/form-data">

@@ -11,6 +11,15 @@
     <!-- GOOGLE FONTS-->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <meta charset="utf-8">
+    <title>Work From Home</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
     <div id="wrapper">
@@ -36,16 +45,28 @@
                     <li class="text-center">
                         <img src="{{ url('asset/img/find_user.png') }}" class="user-image img-responsive" />
                     </li>
-                    {{-- <li>
-                        <a href="{{ url('admin') }}"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
-                    </li> --}}
+
                     <li>
                       <a  href="{{ url('/') }}"><i class="fa fa-desktop fa-3x"></i>Frontend</a>
                   </li>
 
                   <li>
-                    <a  href="{{ url('/') }}"><i class="fa fa-envelope fa-3x"></i>Post a Job</a>
+                    <a  href="{{ url('/admin') }}"><i class="fa fa-table fa-3x"></i>Table</a>
                 </li>
+
+                  <li>
+                    <a  href="{{ url('/post_a_job') }}"><i class="fa fa-envelope fa-3x"></i>Post a Job</a>
+                </li>
+
                 </ul>
             </div>
         </nav>
+
+        <div id="page-wrapper">
+            <div id="page-inner" style="min-height: 100vh; overflow: hidden;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>ADMIN</h2>
+                        <h5>Welcome! Love to see you back.</h5>
+                    </div>
+                </div>

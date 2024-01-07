@@ -1,15 +1,5 @@
 @include('admin.header')
 
-<div id="page-wrapper">
-    <div id="page-inner" style="min-height: 100vh; overflow: hidden;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>ADMIN</h2>
-                <h5>Welcome Sir!, Love to see you back.</h5>
-            </div>
-        </div>
-        <hr />
-
         <!-- Kitchen Sink -->
         <div class="panel panel-default">
             <div class="panel-heading">
