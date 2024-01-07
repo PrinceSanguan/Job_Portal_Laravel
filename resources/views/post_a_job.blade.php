@@ -73,12 +73,17 @@
                     </div>
 
                     <div class="col-12 col-sm-12 mx-auto text-center">
-                        <button class="btn btn-primary w-100" type="submit">Submit</button>
+                        <button class="btn btn-primary w-100" onclick="showRegistrationAlert()" type="submit">Submit</button>
                     </div>
 
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        function showRegistrationAlert() {
+            alert("Are you Sure you want to post it?");
+        }
+    </script>
     @include('admin.footer')
 </div>
