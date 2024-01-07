@@ -1,5 +1,5 @@
 ## Example of CRUD Laravel Using Beautiful interface
 
-Practicing my laravel skills! Using WORK FROM HOME JOB! for educational purpose only!
+Laravel Crud Job Posting and Job Website!
 
 ![Screenshot](public/img/fish.png)
