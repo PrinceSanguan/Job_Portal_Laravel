@@ -75,7 +75,6 @@
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Job Nature: {{$users->status}}</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Salary: {{$users->salary}}</p>
                             <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{$users->address}}</p>
-                            <p class="m-0"><i class="fa fa-angle-right text-primary me-2"></i>Date Line: 15 Oct, 2023</p>
                         </div>
                             <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
                             <h4 class="mb-4">Company Detail</h4>
