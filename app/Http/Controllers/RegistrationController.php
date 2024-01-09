@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\JobUser;
 use App\Models\JobDetails;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class RegistrationController extends Controller
 {
@@ -20,30 +21,41 @@ class RegistrationController extends Controller
     ]);
 
     // Handle file upload
-    if ($request->hasFile('file') && $request->file('file')->isValid()) {
+    // if ($request->hasFile('file') && $request->file('file')->isValid()) {
 
-        $post = new JobUser();
-        $path = $request->file('file')->store('/', ['disk' => 'my_disk']); // Store in the 'public' disk under 'resumes'
+    $post = new JobUser();
+    $path = $request->file('file')->store('public'); // Storing the Resume in the public
+    
+    // Remove "public/" from the beginning of the file path
+    $cleanedPath = str_replace('public/', '', $path);
 
-        // Save the user details to the database using the JobUser model
-        $data = ([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'coverletter' => $request->input('coverletter'),
-            'resume' => $path, // Save file path in the database
-            'created_at' => now(),
-        ]);
+    // Save the user details to the database using the JobUser model
+    $data = ([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'coverletter' => $request->input('coverletter'),
+        'resume' => $cleanedPath, // Save file path in the database
+        'created_at' => now(),
+    ]);
 
-        $post->insert($data);
+    $post->insert($data);
 
-        // Redirect to the registration form
-        return redirect()->route('register.form');
-    }
-
-    // If file upload fails, redirect back with an error message
-    return redirect()->back()->with('error', 'Invalid or missing resume file.');
+    // Redirect to the registration form
+    return redirect()->route('register.form');
 }
 
+     
+     // Show the PDF
+     public function showPdf($filename)
+     {
+         $pdfPath = public_path($filename);
+     
+         if (file_exists($pdfPath)) {
+             return response()->file($pdfPath);
+         } else {
+             return response()->json(['error' => 'File not found'], 404);
+         }
+     }
 
     public function processRegistration(Request $request)
     {
@@ -64,13 +76,22 @@ class RegistrationController extends Controller
     }
 
     public function deleteApplicant($id)
-    {
-        // Find the user by ID and delete
-        JobUser::find($id)->delete();
+{
+    // Find the user by ID
+    $applicant = JobUser::find($id);
 
-        // Redirect back to the admin page
-        return redirect()->route('admin')->with('success', 'Applicant deleted successfully!');
-    }
+    // Get the resume file path from the database
+    $resumePath = $applicant->resume;
+
+    // Delete the user
+    $applicant->delete();
+
+    // Delete the resume file from public storage
+    Storage::delete('public/' . $resumePath);
+
+    // Redirect back to the admin page
+    return redirect()->route('admin')->with('success', 'Applicant deleted successfully!');
+}
 
     public function showUserDetails()
     {
@@ -109,16 +130,10 @@ class RegistrationController extends Controller
      {
          return view('admin');
      }
-     
-     // Show the PDF
-     public function showPdf($filename)
-    {
-        $pdfPath = public_path('uploads-pdf/' . $filename);
-
-        return response()->file($pdfPath);
-    }
 
     ///////////////////////// Jobposting Logic //////////////////////////////
+
+    // Run this code so that have link public in the storage php artisan storage:link
 
     public function jobPosting(Request $request)
 {
@@ -138,11 +153,13 @@ class RegistrationController extends Controller
     ]);
 
     // Handle file upload
-    if ($request->hasFile('file') && $request->file('file')->isValid()) {
 
     // Create a new instance of the JobDetails model
     $post = new JobDetails();
-    $path = $request->file('file')->store('/', ['disk' => 'my_diskone']); // Store in the 'public' disk under 'resumes'
+    $path = $request->file('file')->store('public'); // Store in the 'public' disk under 'resumes'
+
+    // Remove "public/" from the beginning of the file path
+    $cleanedPath = str_replace('public/', '', $path);
 
     // Save the user details to the database using the JobDetails model
     $data = [
@@ -156,7 +173,7 @@ class RegistrationController extends Controller
         'responsibilities' => $request->input('responsibilities'),
         'qualification' => $request->input('qualification'),
         'detail' => $request->input('detail'),
-        'image' => $path,
+        'image' => $cleanedPath,
     ];
     
 
@@ -166,7 +183,8 @@ class RegistrationController extends Controller
     // Redirect back to the same page with success message
     return back()->with('success', 'Job posting successful.'); 
 }
-}
+
+  ///////////////////////// Jobposting Logic //////////////////////////////
 
     public function showJobListing()
     {
@@ -196,15 +214,26 @@ class RegistrationController extends Controller
     }
 
     public function deleteJob($id)
-    {
-        // Find the user by ID and delete
-        JobDetails::find($id)->delete();
+{
+    // Find the user by ID
+    $job = JobDetails::find($id);
 
-        // Redirect back to the admin page
-        return redirect()->route('job_details')->with('success', 'Applicant deleted successfully!');
-    }
+    // Get the image file path from the database
+    $imagePath = $job->image;
+
+    // Delete the Job
+    $job->delete();
+
+    // Delete the resume file from public storage
+    Storage::delete('public/' . $imagePath);
+
+    // Redirect back to the Job Details page
+    return redirect()->route('job_details')->with('success', 'Applicant deleted successfully!');
+}
 
 }
+
+
 
 
 

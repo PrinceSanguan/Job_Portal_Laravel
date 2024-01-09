@@ -25,13 +25,14 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->coverletter }}</td>
-                                            <td class="text-center">
-                                                <img src="{{ asset('img/pdf.png') }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;">
-                                                <br>
-                                                <a href="{{ route('show-pdf', ['filename' => $user->resume]) }}" target="_blank">
-                                                    <button type="button" class="btn btn-primary">View PDF</button>
-                                                </a>
-                                            </td>
+                                        <td class="text-center">
+                                            <img src="{{ asset('img/pdf.png') }}" alt="PDF Icon" style="max-width: 100px; max-height: 100px;">
+                                            <br>
+                                            <a href="{{ route('storage', ['filename' => $user->resume]) }}" target="_blank">
+                                                <button type="button" class="btn btn-primary">View PDF</button>
+                                            </a>
+                                        </td>
+                                            
                                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('F j, Y - g:ia') }}</td>
                                         <td class="text-center">
                                             <form action="{{ route('admin.delete', $user->id) }}" method="post">

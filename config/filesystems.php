@@ -44,7 +44,7 @@ return [
             'throw' => false,
         ],
 
-        'my_disk' => [
+/*         'my_disk' => [
             'driver' => 'local',
             'root' => public_path('uploads-pdf'),
             'visibility' => 'public',
@@ -56,7 +56,7 @@ return [
             'root' => public_path('uploads-image'),
             'visibility' => 'public',
             'throw' => false,
-        ],
+        ], */
 
         's3' => [
             'driver' => 's3',

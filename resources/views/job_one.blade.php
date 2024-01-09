@@ -17,7 +17,7 @@
                 <div class="row gy-5 gx-4">
                     <div class="col-lg-8">
                         <div class="d-flex align-items-center mb-5">
-                            <img class="flex-shrink-0 img-fluid border rounded" src="{{ asset('uploads-image/' . $users->image) }}" alt="" style="width: 80px; height: 80px;">
+                            <img class="flex-shrink-0 img-fluid border rounded" src="{{ asset('storage/' . $users->image) }}" alt="" style="width: 80px; height: 80px;">
                             <div class="text-start ps-4">
                                 <h3 class="mb-3">{{$users->name}}</h3>
                                 <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{$users->name}}</span>

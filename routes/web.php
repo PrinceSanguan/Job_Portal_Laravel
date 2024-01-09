@@ -58,7 +58,7 @@ Route::get('/admin', [RegistrationController::class, 'adminPage'])->name('admin.
 Route::get('/admin', [RegistrationController::class, 'showUserDetails'])->name('admin');
 
 // Show pdf 
-Route::get('/show-pdf/{filename}', [RegistrationController::class, 'showPdf'])->name('show-pdf');
+Route::get('/storage/{filename}', [RegistrationController::class, 'showPdf'])->name('storage');
 
 //JobPosting
 Route::post('/post_a_job', [RegistrationController::class, 'jobPosting'])->name('post_a_job');
