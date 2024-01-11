@@ -51,11 +51,15 @@
                 </li>
 
                 <li>
-                    <a  href="{{ url('/admin/job_details') }}"><i class="fa fa-table fa-3x"></i>Job Details</a>
+                    <a  href="{{ url('/admin/job_details') }}"><i class="fa fa-briefcase fa-3x"></i>Job Details</a>
                 </li>
 
                   <li>
-                    <a  href="{{ url('/admin/post_a_job') }}"><i class="fa fa-envelope fa-3x"></i>Post a Job</a>
+                    <a  href="{{ url('/admin/post_a_job') }}"><i class="fa fa-pencil-square-o fa-3x"></i>Post a Job</a>
+                </li>
+
+                <li>
+                    <a  href="{{ url('/admin/register') }}"><i class="fa fa-user fa-3x"></i>Register New Admin</a>
                 </li>
 
                 </ul>

@@ -38,8 +38,6 @@ Route::post('/login', [RegistrationController::class, 'login']);
 
 // web.php
 Route::post('/apply-job', [RegistrationController::class, 'applyJob'])->name('apply.job');
-Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])->name('register.form');
-Route::post('/register', [RegistrationController::class, 'processRegistration'])->name('register.submit');
 Route::get('/success', [RegistrationController::class, 'showSuccess'])->name('success');
 
 // For Logout
@@ -64,6 +62,10 @@ Route::get('/admin/job_details', [RegistrationController::class, 'showDetails'])
 
 // Add a new route for deleting applicants
 Route::delete('/job_details/delete/{id}', [RegistrationController::class, 'deleteJob'])->name('job.delete');
+
+// Add a new route for Creating New Admin
+Route::get('/admin/register', [RegistrationController::class, 'showRegistrationForm'])->name('register.form');
+Route::post('/admin/register', [RegistrationController::class, 'processRegistration'])->name('register.submit');
 
 });
 

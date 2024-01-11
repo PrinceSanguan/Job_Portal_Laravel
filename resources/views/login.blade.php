@@ -26,6 +26,7 @@
                       <input type="text" name="email" required>
                       <i>Email</i>
                   </div>
+                  <br>
                   <div class="inputBox">
                       <input type="password" name="password" required>
                       <i>Password</i>

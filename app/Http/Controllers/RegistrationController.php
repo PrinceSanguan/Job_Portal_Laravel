@@ -70,18 +70,13 @@ class RegistrationController extends Controller
 
         $user = User::create($data);
 
-        if(!$user) {
-
-            return redirect()->route('register');
-        }
-
-        return redirect()->route('login');
+        return redirect()->route('admin');
     }
 
     public function showRegistrationForm()
     {
         // Display the registration form
-        return view('register');
+        return view('admin.register');
     }
 
     public function showSuccess()
@@ -119,9 +114,15 @@ class RegistrationController extends Controller
 
     public function showLoginForm()
     {
-        // Display the login form
-        return view('login');
+    // Check if the user is already authenticated
+    if (auth()->check()) {
+        // Redirect the authenticated user to a different page
+        return redirect('admin/admin');
     }
+
+    // Display the login form for non-authenticated users
+    return view('login');
+}
 
     // Handle login form submission
     public function login(Request $request)
