@@ -23,13 +23,14 @@
               <form method="post" action="{{ route('login') }}">
                   @csrf
                   <div class="inputBox">
-                      <input type="text" name="username" required>
-                      <i>Username</i>
+                      <input type="text" name="email" required>
+                      <i>Email</i>
                   </div>
                   <div class="inputBox">
                       <input type="password" name="password" required>
                       <i>Password</i>
                   </div>
+                  <br>
                   <div class="inputBox">
                       <input type="submit" value="Login">
                   </div>

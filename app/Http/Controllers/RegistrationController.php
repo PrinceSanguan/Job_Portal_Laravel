@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\JobUser;
 use App\Models\JobDetails;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class RegistrationController extends Controller
@@ -40,8 +42,8 @@ class RegistrationController extends Controller
 
     $post->insert($data);
 
-    // Redirect to the registration form
-    return redirect()->route('register.form');
+    // Redirect to the success page after successful registration
+    return redirect()->route('success')->with('success', 'Registration successful!');
 }
 
      
@@ -59,8 +61,21 @@ class RegistrationController extends Controller
 
     public function processRegistration(Request $request)
     {
-        // Redirect to the success page after successful registration
-        return redirect()->route('success')->with('success', 'Registration successful!');
+
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+        ]);
+
+        $user = User::create($data);
+
+        if(!$user) {
+
+            return redirect()->route('register');
+        }
+
+        return redirect()->route('login');
     }
 
     public function showRegistrationForm()
@@ -90,7 +105,7 @@ class RegistrationController extends Controller
     Storage::delete('public/' . $resumePath);
 
     // Redirect back to the admin page
-    return redirect()->route('admin')->with('success', 'Applicant deleted successfully!');
+    return redirect()->route('admin.admin')->with('success', 'Applicant deleted successfully!');
 }
 
     public function showUserDetails()
@@ -99,7 +114,7 @@ class RegistrationController extends Controller
         $users = JobUser::all();
 
         // Pass the retrieved information to the 'admin' view
-        return view('admin', ['users' => $users]);
+        return view('admin.admin', ['users' => $users]);
     }
 
     public function showLoginForm()
@@ -111,24 +126,27 @@ class RegistrationController extends Controller
     // Handle login form submission
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
-    
-        // Check if the provided credentials are correct
-        if (($credentials['username'] == 'admin' && $credentials['password'] == '123') || 
-            ($credentials['username'] == 'admin2' && $credentials['password'] == '123')) {
-    
+        $data = $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+          // Authentication
+          if (Auth::attempt($data)) {
+            $user = Auth::user();
+            
             // Redirect to the admin page on successful login
             return redirect()->route('admin');
-        }
+        } 
     
-        // Redirect back to the login page with an error message
+        // Authentication failed
         return redirect()->route('login')->with('error', 'Invalid credentials');
     }
 
      // Display the admin page
      public function adminPage()
      {
-         return view('admin');
+         return view('admin.admin');
      }
 
     ///////////////////////// Jobposting Logic //////////////////////////////
@@ -201,7 +219,7 @@ class RegistrationController extends Controller
         $users = JobDetails::all();
 
         // Pass the jobs to the 'job_listing' view
-        return view('job_details', ['users' => $users]);
+        return view('admin.job_details', ['users' => $users]);
     }
 
     public function showJobOne($id)
@@ -228,8 +246,18 @@ class RegistrationController extends Controller
     Storage::delete('public/' . $imagePath);
 
     // Redirect back to the Job Details page
-    return redirect()->route('job_details')->with('success', 'Applicant deleted successfully!');
+    return redirect()->route('admin.job_details')->with('success', 'Applicant deleted successfully!');
 }
+
+    /////////////////This Code Is For Logout////////////////////////////////////////
+    public function logout() {
+
+        Session::flush();
+        Auth::logout();
+
+        return redirect()->route('login');
+    }
+    /////////////////This Code Is For Logout////////////////////////////////////////
 
 }
 

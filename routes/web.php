@@ -26,16 +26,8 @@ Route::get('/about', function () {
 Route::get('/joblisting', [RegistrationController::class, 'showJobListing'])->name('joblisting');
 Route::get('/job_one/{id}', [RegistrationController::class, 'showJobOne'])->name('job_one');
 
-Route::get('/job_two', function () {
-    return view('job_two');
-});
-
-Route::get('/job_three', function () {
-    return view('job_three');
-});
-
-Route::get('/post_a_job', function () {
-    return view('post_a_job');
+Route::get('/admin/post_a_job', function () {
+    return view('admin.post_a_job');
 });
 
 // Define a route for the login page
@@ -50,20 +42,28 @@ Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])
 Route::post('/register', [RegistrationController::class, 'processRegistration'])->name('register.submit');
 Route::get('/success', [RegistrationController::class, 'showSuccess'])->name('success');
 
+// For Logout
+Route::get('/logout', [RegistrationController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->group(function () {
+
 // Add a new route for deleting applicants
 Route::delete('/admin/delete/{id}', [RegistrationController::class, 'deleteApplicant'])->name('admin.delete');
 
 // web.php
-Route::get('/admin', [RegistrationController::class, 'adminPage'])->name('admin.page');
-Route::get('/admin', [RegistrationController::class, 'showUserDetails'])->name('admin');
+Route::get('/admin/admin', [RegistrationController::class, 'adminPage'])->name('admin.page');
+Route::get('/admin/admin', [RegistrationController::class, 'showUserDetails'])->name('admin');
 
 // Show pdf 
 Route::get('/storage/{filename}', [RegistrationController::class, 'showPdf'])->name('storage');
 
 //JobPosting
-Route::post('/post_a_job', [RegistrationController::class, 'jobPosting'])->name('post_a_job');
+Route::post('/admin/post_a_job', [RegistrationController::class, 'jobPosting'])->name('post_a_job');
 
-Route::get('/job_details', [RegistrationController::class, 'showDetails'])->name('job_details');
+Route::get('/admin/job_details', [RegistrationController::class, 'showDetails'])->name('job_details');
 
 // Add a new route for deleting applicants
 Route::delete('/job_details/delete/{id}', [RegistrationController::class, 'deleteJob'])->name('job.delete');
+
+});
+

@@ -22,8 +22,8 @@
                         @csrf <!-- CSRF token for Laravel -->
 
                         <div class="inputBox">
-                            <input type="text" name="username" required>
-                            <i>Username</i>
+                            <input type="text" name="name" required>
+                            <i>Fullname</i>
                         </div>
 
                         <div class="inputBox">

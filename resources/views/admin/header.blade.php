@@ -35,7 +35,7 @@
             </div>
             <div id="last-access" style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
                 Current Time: <span id="last-access-time">Loading...</span>&nbsp;
-                <a href="{{ url('/') }}" class="btn btn-danger square-btn-adjust">Logout</a>
+                <a href="{{ url('logout') }}" class="btn btn-danger square-btn-adjust">Logout</a>
             </div>
         </nav>
         <!-- /. NAV TOP  -->
@@ -47,15 +47,15 @@
                     </li>
 
                   <li>
-                    <a  href="{{ url('/admin') }}"><i class="fa fa-table fa-3x"></i>Applicant Details</a>
+                    <a  href="{{ url('/admin/admin') }}"><i class="fa fa-table fa-3x"></i>Applicant Details</a>
                 </li>
 
                 <li>
-                    <a  href="{{ url('/job_details') }}"><i class="fa fa-table fa-3x"></i>Job Details</a>
+                    <a  href="{{ url('/admin/job_details') }}"><i class="fa fa-table fa-3x"></i>Job Details</a>
                 </li>
 
                   <li>
-                    <a  href="{{ url('/post_a_job') }}"><i class="fa fa-envelope fa-3x"></i>Post a Job</a>
+                    <a  href="{{ url('/admin/post_a_job') }}"><i class="fa fa-envelope fa-3x"></i>Post a Job</a>
                 </li>
 
                 </ul>
