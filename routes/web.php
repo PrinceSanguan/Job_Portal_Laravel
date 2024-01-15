@@ -52,8 +52,8 @@ Route::delete('/admin/delete/{id}', [RegistrationController::class, 'deleteAppli
 Route::get('/admin/admin', [RegistrationController::class, 'adminPage'])->name('admin.page');
 Route::get('/admin/admin', [RegistrationController::class, 'showUserDetails'])->name('admin');
 
-// Show pdf 
-Route::get('/storage/{filename}', [RegistrationController::class, 'showPdf'])->name('storage');
+// Show PDF
+Route::get('/uploads-pdf/{filename}', [RegistrationController::class, 'showPdf'])->name('storage');
 
 //JobPosting
 Route::post('/admin/post_a_job', [RegistrationController::class, 'jobPosting'])->name('post_a_job');

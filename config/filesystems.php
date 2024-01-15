@@ -44,19 +44,19 @@ return [
             'throw' => false,
         ],
 
-/*         'my_disk' => [
+        'my_diskpdf' => [
             'driver' => 'local',
-            'root' => public_path('uploads-pdf'),
+            'root' => public_path('uploads-pdf'), //'root' => base_path('../uploads-pdf'), that is need to use when uploading to the infinity free
             'visibility' => 'public',
             'throw' => false,
         ],
 
-        'my_diskone' => [
+        'my_disk' => [
             'driver' => 'local',
-            'root' => public_path('uploads-image'),
+            'root' => public_path('uploads-image'), //'root' => base_path('../uploads-image'), that is need to use when uploading to the infinity free
             'visibility' => 'public',
             'throw' => false,
-        ], */
+        ], 
 
         's3' => [
             'driver' => 's3',

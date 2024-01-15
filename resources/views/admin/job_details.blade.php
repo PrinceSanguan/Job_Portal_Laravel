@@ -38,7 +38,7 @@
                                         <td>{{ $user->responsibilities }}</td>
                                         <td>{{ $user->qualification }}</td>
                                         <td>{{ $user->detail }}</td>
-                                        <td><img src="{{ asset('storage/' . $user->image) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
+                                        <td><img src="{{ asset('uploads-image/' . $user->image) }}" alt="Featured Image" style="max-width: 100px; max-height: 100px;"></td>
                                         <td class="text-center">
                                             <form  action="{{ route('job.delete', $user->id) }}" method="post">
                                                 @csrf
