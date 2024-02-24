@@ -2,6 +2,8 @@
 
 Welcome to our Job Portal, a secure platform designed to streamline the job application process. Our website facilitates seamless communication between employers and potential candidates, ensuring a smooth and efficient hiring experience.
 
+![Screenshot](public/img/fish.png)
+
 ## Key Features:
 
 ### Admin Dashboard:
@@ -11,6 +13,10 @@ Welcome to our Job Portal, a secure platform designed to streamline the job appl
 -   Job Posting: Admins can effortlessly post job opportunities with detailed descriptions and requirements.
 
 -   Manage Applications: Track and manage job applications efficiently within the dashboard.
+
+![Screenshot](public/readme/admin1.png)
+![Screenshot](public/readme/admin2.png)
+![Screenshot](public/readme/admin3.png)
 
 ### User-Friendly Interface:
 
@@ -28,4 +34,4 @@ Welcome to our Job Portal, a secure platform designed to streamline the job appl
 
 -   Application Status Tracking: Users can monitor the status of their applications, providing transparency and reducing uncertainty. Check it out at [Job Portal](http://www.work-from-home.free.nf)
 
-![Screenshot](public/img/fish.png)
+![Screenshot](public/readme/signin.png)
